@@ -5,7 +5,8 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader, Subset
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics import f1_score
-from .model import
+
+from .model import SimpleNN
 
 
 class TextScoreDataset(Dataset):
