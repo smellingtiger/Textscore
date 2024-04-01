@@ -5,6 +5,8 @@ from torch.utils.data import Dataset, DataLoader
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics import f1_score, confusion_matrix
 
+from .model import SimpleNN
+
 
 class TextScoreDataset(Dataset):
     def __init__(self, test_file, transformer_model_name='sbert-base-chinese-nli'):
