@@ -90,7 +90,7 @@ val_loader = DataLoader(Subset(dataset, range(train_size, train_size + val_size)
 
 # 早停法设置
 best_val_acc = 0.0
-patience = 10
+patience = 15
 wait = 0
 
 for epoch in range(num_epochs):
@@ -138,7 +138,7 @@ for epoch in range(num_epochs):
     print(f'Validation F1 Score: {f1_val:.5f}')
 
     # 早停检查
-    if acc_val > best_val_acc:
+    if acc_val >= best_val_acc:
         best_val_acc = acc_val
         wait = 0
         torch.save(model.state_dict(), 'best_model05_4f.pth')
