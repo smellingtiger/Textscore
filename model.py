@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 class SimpleNN(nn.Module):
     def __init__(self, input_size, hidden_size, dropout_rate=0.1):
@@ -25,14 +24,20 @@ class SimpleNN(nn.Module):
 
     def forward(self, x):
         x = torch.tensor(x, dtype=torch.float32)
+
         x = self.gelu1(self.fc1(x))
         x = self.dropout1(x)
+        identity = x
         
         x = self.gelu2(self.fc2(x))
         x = self.dropout2(x)
+        x = x + identity
+        identity = x
         
         x = self.gelu3(self.fc3(x))
         x = self.dropout3(x)
+        x = x + identity
+        identity = x
         
         x = self.fc4(x)
         return torch.sigmoid(x)

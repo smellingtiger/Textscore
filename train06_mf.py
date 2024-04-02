@@ -6,11 +6,11 @@ from torch.utils.data import Dataset, DataLoader, Subset
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics import f1_score
 
-from .model import SimpleNN
+from model import SimpleNN
 
 
 class TextScoreDataset(Dataset):
-    def __init__(self, train_file, val_file, transformer_model_name='sbert-base-chinese-nli'):
+    def __init__(self, train_file, val_file, transformer_model_name='uer/sbert-base-chinese-nli'):
         self.model = SentenceTransformer(transformer_model_name)
         self.model = self.model.to("cuda")
 
@@ -74,8 +74,8 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.1)
 
 # 数据集文件路径
-train_file = 'train05_4f.json'
-val_file = 'val06_4f.json'
+train_file = 'train06_mf.json'
+val_file = 'val06_mf.json'
 
 # 实例化数据集对象
 dataset = TextScoreDataset(train_file=train_file, val_file=val_file)
