@@ -23,8 +23,6 @@ class SimpleNN(nn.Module):
         self.fc4 = nn.Linear(hidden_size, 1)
 
     def forward(self, x):
-        x = torch.tensor(x, dtype=torch.float32)
-
         x = self.gelu1(self.fc1(x))
         x = self.dropout1(x)
         identity = x

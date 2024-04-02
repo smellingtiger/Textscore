@@ -20,7 +20,7 @@ class TextScoreDataset(Dataset):
             raw_train = json.loads(file.read())
         tot_train = len(raw_train)
         for index, item in enumerate(raw_train):
-            print(f"encoding validation data...{index}/{tot_train}", end="\r")
+            print(f"encoding training data...{index}/{tot_train}", end="\r")
             title = item["title"]
             title_embedding = torch.tensor(self.model.encode(title))
             content = item["cleaned_text"]
